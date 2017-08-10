@@ -1,0 +1,21 @@
+#!/usr/bin/bash
+
+#export LC_ALL=en_US.UTF-8
+a=$(grep 'temporary password' /var/log/mysqld.log); set mysql_pswd=${a##* }
+grep 'temporary password' /var/log/mysqld.log > pswd
+
+/usr/bin/expect << EOF
+spawn mysql_secure_installation
+expect "nter password for user root" {send "$mysql_pswd\r"}
+expect "ew password" {send "TiffChouMakeup0125!\r"}
+expect "e-enter new password:" {send "TiffChouMakeup0125!\r"}
+expect "hange the password for root ?" {send "y\r"}
+expect "ew password" {send "TiffChouMakeup0125!\r"}
+expect "e-enter new password:" {send "TiffChouMakeup0125!\r"}
+expect "o you wish to continue with the password provided?" {send "y\r"}
+expect "emove anonymous users?" {send "n\r"}
+expect "isallow root login remotely?" {send "n\r"}
+expect "emove test database and access to it?" {send "n\r"}
+expect "eload privilege tables now?" {send "y\r"}
+
+interact

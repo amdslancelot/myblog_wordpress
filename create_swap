@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+dd if=/dev/zero of=/swap1Gfile bs=1024 count=1048576
+mkswap /swap1Gfile
+swapon -v /swap1Gfile
+echo "/swap1Gfile swap swap defaults 0 0" >> /etc/fstab
