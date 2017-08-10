@@ -1,8 +1,10 @@
 #!/usr/bin/bash
 
 #export LC_ALL=en_US.UTF-8
-a=$(grep 'temporary password' /var/log/mysqld.log); set mysql_pswd=${a##* }
+a=$(grep 'temporary password' /var/log/mysqld.log); export mysql_pswd=${a##* }
+echo mysql_pswd=$mysql_pswd
 grep 'temporary password' /var/log/mysqld.log > pswd
+cat ./pswd
 
 /usr/bin/expect << EOF
 spawn mysql_secure_installation
