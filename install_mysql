@@ -3,7 +3,8 @@
 #export LC_ALL=en_US.UTF-8
 a=$(grep 'temporary password' /var/log/mysqld.log); export mysql_pswd=${a##* }
 echo mysql_pswd=$mysql_pswd
-grep 'temporary password' /var/log/mysqld.log > pswd
+
+echo ${a##* } > pswd
 cat ./pswd
 
 /usr/bin/expect << EOF

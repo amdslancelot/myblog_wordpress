@@ -1,7 +1,7 @@
 FROM oraclelinux:latest
 MAINTAINER Lans Hung
 RUN yum update -y
-RUN yum install wget vim httpd expect -y
+RUN yum install wget vim httpd expect php php-mysql -y
 RUN yum localinstall https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm -y
 RUN yum install mysql-server -y
 COPY ./create_swap ./
